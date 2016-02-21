@@ -1,0 +1,13 @@
+language: java
+
+jdk:
+  - oraclejdk7
+  - openjdk7
+
+script: mvn clean compile
+
+install: mvn install -Dmaven.test.skip=true
+
+branches:
+  only:
+    - master
