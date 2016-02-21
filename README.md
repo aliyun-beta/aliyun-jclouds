@@ -1,5 +1,7 @@
 Providers of JClouds for Aliyun
 
+[![Build Status](https://travis-ci.org/aliyun-beta/aliyun-jclouds.svg?branch=master)](https://travis-ci.org/aliyun-beta/aliyun-jclouds)
+
 #### *modules*
 * aliyun-ecs **jclouds-compute**
 * aliyun-oss **jclouds-blobstore**

@@ -148,7 +148,7 @@ public class OSSBlobStore extends BaseBlobStore {
                            input.getCreationDate(),
                            input.getCreationDate(),
                            ImmutableMap.<String, String>builder().build(),
-                           new Long(0));
+                           0l);
                      return storageMetadata;
                   }
                }), null);
