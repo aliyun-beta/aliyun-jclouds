@@ -148,7 +148,7 @@ public class OSSBlobStore extends BaseBlobStore {
                            input.getCreationDate(),
                            input.getCreationDate(),
                            ImmutableMap.<String, String>builder().build(),
-                           0l);
+                           0L);
                      return storageMetadata;
                   }
                }), null);
@@ -643,5 +643,11 @@ public class OSSBlobStore extends BaseBlobStore {
          }
       }
       return result;
+   }
+
+   @Override
+   public List<MultipartUpload> listMultipartUploads(String arg0) {
+      // TODO Auto-generated method stub
+      return null;
    }
 }
