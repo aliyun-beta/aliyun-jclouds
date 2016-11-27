@@ -5,12 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache.jclouds.labs</groupId>
-    <artifactId>jclouds-labs-aliyun</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <groupId>io.github.aliyun-beta</groupId>
+    <artifactId>aliyun-jclouds</artifactId>
+    <version>1.9.2</version>
   </parent>
 
-  <groupId>org.apache.jclouds.labs</groupId>
   <artifactId>aliyun-ecs</artifactId>
   <name>jclouds aliyun ecs</name>
   <description>jclouds components to access an implementation of ECS</description>

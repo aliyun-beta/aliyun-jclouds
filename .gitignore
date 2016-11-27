@@ -1,5 +1,14 @@
-.classpath
-.project
-.settings/
+# compile
 target/
 test-output/
+
+# eclipse
+.settings/
+.classpath
+.project
+
+# idea
+.idea/
+*.iml
+*.ipr
+*.iws

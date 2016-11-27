@@ -7,32 +7,68 @@
   <parent>
     <groupId>org.apache.jclouds</groupId>
     <artifactId>jclouds-project</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>1.9.2</version>
   </parent>
 
-  <groupId>org.apache.jclouds.labs</groupId>
-  <artifactId>jclouds-labs-aliyun</artifactId>
-  <name>Apache jclouds labs aliyun</name>
+  <groupId>io.github.aliyun-beta</groupId>
+  <artifactId>aliyun-jclouds</artifactId>
+  <version>1.9.2</version>
   <packaging>pom</packaging>
+  <name>Jclouds for aliyun</name>
+  <description>Parent for modules of aliyun-jclouds</description>
+  <url>https://github.com/aliyun-beta/aliyun-jclouds</url>
 
-  <repositories>
-    <repository>
-      <id>apache-snapshots</id>
-      <url>https://repository.apache.org/content/repositories/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
+  <organization>
+    <name>The Aliyun Company</name>
+    <url>https://www.aliyun.com</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>suizhen</name>
+      <email>suizhen@ucress.com</email>
+    </developer>
+  </developers>
 
   <modules>
     <module>aliyun-ecs</module>
     <module>aliyun-oss</module>
     <module>aliyun-slb</module>
   </modules>
+
+  <scm>
+    <connection>scm:git:https://github.com/aliyun-beta/aliyun-jclouds.git</connection>
+    <developerConnection>scm:git:https://github.com/anyways/aliyun-jclouds.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/aliyun-beta/aliyun-jclouds</url>
+  </scm>
+
+  <issueManagement>
+    <system>Github Issues</system>
+    <url>https://github.com/aliyun-beta/aliyun-jclouds/issues</url>
+  </issueManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>ossrh-releases</id>
+      <url>https://oss.sonatype.org/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>ossrh-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <properties>
+    <jclouds.version>1.9.2</jclouds.version>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -67,27 +103,34 @@
       <dependency>
         <groupId>org.apache.jclouds</groupId>
         <artifactId>jclouds-core</artifactId>
-        <version>${project.version}</version>
+        <version>${jclouds.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.jclouds.driver</groupId>
         <artifactId>jclouds-log4j</artifactId>
-        <version>${project.version}</version>
+        <version>${jclouds.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.jclouds</groupId>
         <artifactId>jclouds-compute</artifactId>
-        <version>${project.version}</version>
+        <version>${jclouds.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.jclouds</groupId>
         <artifactId>jclouds-blobstore</artifactId>
-        <version>${project.version}</version>
+        <version>${jclouds.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.jclouds</groupId>
         <artifactId>jclouds-loadbalancer</artifactId>
-        <version>${project.version}</version>
+        <version>${jclouds.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.jclouds</groupId>
+        <artifactId>jclouds-core</artifactId>
+        <version>${jclouds.version}</version>
+        <type>test-jar</type>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>com.aliyun</groupId>
@@ -109,18 +152,15 @@
         <artifactId>aliyun-java-sdk-slb</artifactId>
         <version>2.0.0-rc1</version>
       </dependency>
-      <dependency>
-        <groupId>org.apache.jclouds</groupId>
-        <artifactId>jclouds-core</artifactId>
-        <version>${project.version}</version>
-        <type>test-jar</type>
-        <scope>test</scope>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <build>
-    <testSourceDirectory>src/test/java</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -133,6 +173,18 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.apache.rat</groupId>
@@ -174,12 +226,12 @@
           <aggregate>true</aggregate>
           <instrumentation>
             <excludes>
-              <exclude>org/apache/jclouds/ecs/ECSApi.class</exclude>
-              <exclude>org/apache/jclouds/ecs/compute/ECSComputeServiceContext.class</exclude>
-              <exclude>org/apache/jclouds/oss/OSSApi.class</exclude>
-              <exclude>org/apache/jclouds/oss/blobstore/OSSBlobStoreContext.class</exclude>
-              <exclude>org/apache/jclouds/slb/SLBApi.class</exclude>
-              <exclude>org/apache/jclouds/slb/loadbalancer/SLBLoadBalancerServiceContext.class</exclude>
+              <exclude>org/jclouds/aliyun/ecs/ECSApi.class</exclude>
+              <exclude>org/jclouds/aliyun/ecs/compute/ECSComputeServiceContext.class</exclude>
+              <exclude>org/jclouds/aliyun/oss/OSSApi.class</exclude>
+              <exclude>org/jclouds/aliyun/oss/blobstore/OSSBlobStoreContext.class</exclude>
+              <exclude>org/jclouds/aliyun/slb/SLBApi.class</exclude>
+              <exclude>org/jclouds/aliyun/slb/loadbalancer/SLBLoadBalancerServiceContext.class</exclude>
             </excludes>
           </instrumentation>
         </configuration>
@@ -193,8 +245,8 @@
           <version>2.10</version>
           <configuration>
             <useProjectReferences>true</useProjectReferences>
-            <downloadSources>false</downloadSources>
-            <downloadJavadocs>false</downloadJavadocs>
+            <downloadSources>true</downloadSources>
+            <downloadJavadocs>true</downloadJavadocs>
           </configuration>
         </plugin>
         <plugin>
@@ -211,6 +263,53 @@
           <version>2.7</version>
           <configuration>
             <encoding>utf-8</encoding>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.2.1</version>
+          <configuration>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9.1</version>
+          <configuration>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.5</version>
+          <configuration>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
           </configuration>
         </plugin>
       </plugins>
