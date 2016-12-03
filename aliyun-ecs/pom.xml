@@ -7,7 +7,7 @@
   <parent>
     <groupId>io.github.aliyun-beta</groupId>
     <artifactId>aliyun-jclouds</artifactId>
-    <version>1.9.2</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>aliyun-ecs</artifactId>
