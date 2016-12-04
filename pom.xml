@@ -246,7 +246,6 @@
           <executions>
             <execution>
               <id>bundle-create</id>
-              <phase>package</phase>
               <goals>
                 <goal>bundle-create</goal>
               </goals>
