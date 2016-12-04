@@ -232,7 +232,6 @@
           <executions>
             <execution>
               <id>sign-artifacts</id>
-              <phase>package</phase>
               <goals>
                 <goal>sign</goal>
               </goals>
