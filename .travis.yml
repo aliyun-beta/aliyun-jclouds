@@ -5,7 +5,7 @@ jdk:
 
 script: mvn clean compile
 
-install: mvn install -Dmaven.test.skip=true
+install: mvn package -DskipTests
 
 branches:
   only:
