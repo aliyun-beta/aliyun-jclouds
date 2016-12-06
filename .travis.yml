@@ -7,7 +7,7 @@ jdk:
 install: true
 
 script:
-  - mvn package -DskipTests -Dgpg.skip=true
+  - mvn package -DskipTests
 
 branches:
   only:
