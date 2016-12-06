@@ -1,6 +1,7 @@
 ## Providers of JClouds for Aliyun
 
 [![Build Status](https://travis-ci.org/aliyun-beta/aliyun-jclouds.svg?branch=master)](https://travis-ci.org/aliyun-beta/aliyun-jclouds)
+[![Maven Central](https://img.shields.io/badge/maven%20central-1.0.0-brightgreen.svg)](http://mvnrepository.com/artifact/io.github.aliyun-beta)
 
 ### Introduction
 
