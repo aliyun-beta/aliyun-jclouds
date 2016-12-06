@@ -1,44 +1,83 @@
-Providers of JClouds for Aliyun
+## Providers of JClouds for Aliyun
 
 [![Build Status](https://travis-ci.org/aliyun-beta/aliyun-jclouds.svg?branch=master)](https://travis-ci.org/aliyun-beta/aliyun-jclouds)
 
-#### *modules*
-* aliyun-ecs **jclouds-compute**
-* aliyun-oss **jclouds-blobstore**
-* aliyun-slb **jclouds-loadbalancer**
+### Introduction
 
-| Name | Type |
+aliyun-jclouds adapt for jclouds to use cloud service of [aliyun](https://www.aliyun.com)
+
+### Providers
+
+| Provider | Service |
 |------|------|
-|aliyun-ecs|provider|
-|aliyun-oss|provider|
-|aliyun-slb|provider|
+|aliyun-ecs|ComputeService|
+|aliyun-oss|BlobStore|
+|aliyun-slb|LoadBalancerService|
 
-#### *compile*
-Providers use **Google Auto** to generate services
+### Maven
 
-**It is important to do like this**
-> mvn clean compile
+    <dependencies>
+      <dependency>
+        <groupId>io.github.aliyun-beta</groupId>
+        <artifactId>aliyun-ecs</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>io.github.aliyun-beta</groupId>
+        <artifactId>aliyun-oss</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>io.github.aliyun-beta</groupId>
+        <artifactId>aliyun-slb</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+    </dependencies>
 
-Then you will find an folder named services from target\classes\META-INF in each modules
+### Usage
 
-If you do not do the operation, an error will happends.
+Offical documents link [Apache-jclouds](http://jclouds.apache.org/start)
 
-    key [aliyun-ecs] not in the list of providers or apis
+###### ComputeService
 
-#### *test*
-Please change the accessKey and secret witch generate by your own account of [Aliyun](http://www.aliyun.com) in each test classes before test
+    ComputeService computeService;
+    String provider = "aliyun-ecs";
+    String key = "Your AccessKey";
+    String secret = "Your AccessKeySecret";
+    ComputeServiceContext context = ContextBuilder
+          .newBuilder(provider)
+          .credentials(key, secret)
+          .buildView(ComputeServiceContext.class);
+    computeService = context.getComputeService();
 
-    private static final String key = "nyCUviU59zdxOIYJ";
-    private static final String secret = "VX99Yry885o0lpjFgzIpjibrVJIGgB";
+###### BlobStore
 
-Then run command
-> mvn test
+    BlobStore blobStore;
+    String provider = "aliyun-oss";
+    String key = "Your AccessKey";
+    String secret = "Your AccessKeySecret";
+    BlobStoreContext context = ContextBuilder
+          .newBuilder(provider)
+          .credentials(key, secret)
+          .buildView(BlobStoreContext.class);
+    blobStore = context.getBlobStore();
 
-#### *changelog*
-| Date | Message |
-|------|---------|
-|2016-01-17|push for checking|
-|2016-01-25|fix some bugs|
+###### LoadBalancerService
 
-#### License
+    LoadBalancerService loadBalancerService;
+    String provider = "aliyun-slb";
+    String key = "Your AccessKey";
+    String secret = "Your AccessKeySecret";
+    LoadBalancerServiceContext context = ContextBuilder
+          .newBuilder(provider)
+          .credentials(key, secret)
+          .buildView(LoadBalancerServiceContext.class);
+    loadBalancerService = context.getLoadBalancerService();
+
+### Build
+
+> mvn package -DskipTests
+
+### License
+
 Licensed under the Apache License, Version 2.0
