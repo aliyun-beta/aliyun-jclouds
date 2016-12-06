@@ -211,10 +211,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.9.1</version>
-          <configuration>
-            <quiet>true</quiet>
-            <encoding>utf-8</encoding>
-          </configuration>
           <executions>
             <execution>
               <id>attach-javadocs</id>
@@ -222,6 +218,10 @@
               <goals>
                 <goal>jar</goal>
               </goals>
+              <configuration>
+                <quiet>true</quiet>
+                <encoding>utf-8</encoding>
+              </configuration>
             </execution>
           </executions>
         </plugin>
@@ -232,6 +232,7 @@
           <executions>
             <execution>
               <id>sign-artifacts</id>
+              <phase>package</phase>
               <goals>
                 <goal>sign</goal>
               </goals>
