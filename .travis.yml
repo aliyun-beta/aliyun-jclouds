@@ -1,11 +1,13 @@
 language: java
 
 jdk:
+  - oraclejdk7
   - openjdk7
 
-script: mvn clean compile
+install: true
 
-install: mvn package -DskipTests
+script:
+  - mvn package -DskipTests -Dgpg.skip=true
 
 branches:
   only:
